@@ -60,7 +60,7 @@ namespace Doubly_Linked_List
 
                 case "2":
                     // User wishes to search for a node in the list.
-                    //handleListSearch();
+                    handleListSearch();
                     break;
 
                 case "3":
@@ -133,6 +133,51 @@ namespace Doubly_Linked_List
                 Console.WriteLine("\nCouldn't get a valid number from what you entered.\n");
             }
         }
+
+        // Search for a node with the provided key in the list.
+        static void handleListSearch()
+        {
+            // List doesn't exist
+            if (list == null)
+            {
+                Console.WriteLine("\nYou haven't initialised a doubly linked tree, please add a number and try and view it again.\n");
+                return;
+            }
+
+            // Handle the search.
+            Console.WriteLine("Please enter the key of the node you want to search for in the doubly linked list.");
+
+            // Get the user's desired node data.
+            Console.Write("\nKey to search for: ");
+
+            // Parse the user's input into an integer, otherwise return a warning.
+            int usersKeyInput = parseUsersInputToInt(Console.ReadLine());
+
+            // 
+            if (usersKeyInput != -1)
+            {
+                // The input was a valid string integer representation and could be parsed.
+                // Find the node in the list.
+                Node foundNode = list.findNode(list, usersKeyInput);
+                if (foundNode != null)
+                {
+                    Console.WriteLine("\n[{0}, \"{1}\"] was found in the doubly linked list.\n", foundNode.key, foundNode.data);
+                }
+                else
+                {
+                    // Unable to find the node or the binary tree doesn't exist, let the user node.
+                    Console.WriteLine("\n{0} wasn't found in the list, please try another number or print the list to see what's in there.\n", usersKeyInput);
+                }
+
+            }
+            else
+            {
+                // Couldn't parse the number into an int.
+                Console.WriteLine("\nCouldn't get a valid number from what you entered.\n");
+            }
+        }
+        
+
 
         // The user wasnt to print/visualise the list, this method will visualise the current list for the user.
         static void printList()
