@@ -70,7 +70,7 @@ namespace Doubly_Linked_List
 
                 case "4":
                     // User wishes to remove a node from the list.
-                    //handleRemovingNode();
+                    handleRemovingNode();
                     break;
 
                 case "5":
@@ -195,7 +195,6 @@ namespace Doubly_Linked_List
             // Parse the user's input into an integer, otherwise return a warning.
             int usersKeyInput = parseUsersInputToInt(Console.ReadLine());
 
-            // 
             if (usersKeyInput != -1)
             {
                 // The input was a valid string integer representation and could be parsed.
@@ -216,7 +215,51 @@ namespace Doubly_Linked_List
                 }
                 else
                 {
-                    // Unable to find the node or the binary tree doesn't exist, let the user node.
+                    // Unable to find the node or the list doesn't exist, let the user know.
+                    Console.WriteLine("\n{0} wasn't found in the list, please try another number or print the list to see what's in there.\n", usersKeyInput);
+                }
+            }
+            else
+            {
+                // Couldn't parse the number into an int.
+                Console.WriteLine("\nCouldn't get a valid number from what you entered.\n");
+            }
+        }
+
+        // Allow the user to remove a node from the list.
+        static void handleRemovingNode()
+        {
+            // List doesn't exist.
+            if (list == null)
+            {
+                Console.WriteLine("\nYou haven't initialised a doubly linked tree, please add a number and try and view it again.\n");
+                return;
+            }
+
+            // Otherwise, handle the removal.
+            // Handle the search.
+            Console.WriteLine("Please enter the key of the node you want to remove from the doubly linked list.");
+
+            // Get the user's desired node data.
+            Console.Write("\nKey to remove: ");
+
+            // Parse the user's input into an integer, otherwise return a warning.
+            int usersKeyInput = parseUsersInputToInt(Console.ReadLine());
+            if (usersKeyInput != -1)
+            {
+                // The input was a valid string integer representation and could be parsed.
+                // Find the node in the list.
+                Node deleteNode = list.findNode(list, usersKeyInput);
+                if (deleteNode != null)
+                {
+                    // The node exists, so remove it from the list.
+                    list.deleteNode(list, deleteNode);
+                    // Let the user know it's deleted.
+                    Console.WriteLine("\nSuccessfully deleted [{0}, \"{1}\"] from the list.\n", deleteNode.key, deleteNode.data);
+                }
+                else
+                {
+                    // Unable to find the node or the list doesn't exist, let the user know.
                     Console.WriteLine("\n{0} wasn't found in the list, please try another number or print the list to see what's in there.\n", usersKeyInput);
                 }
             }
