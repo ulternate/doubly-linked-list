@@ -65,7 +65,7 @@ namespace Doubly_Linked_List
 
                 case "3":
                     // User wishes to edit a node in the list.
-                    //handleEditingNode();
+                    handleEditingNode();
                     break;
 
                 case "4":
@@ -168,7 +168,6 @@ namespace Doubly_Linked_List
                     // Unable to find the node or the binary tree doesn't exist, let the user node.
                     Console.WriteLine("\n{0} wasn't found in the list, please try another number or print the list to see what's in there.\n", usersKeyInput);
                 }
-
             }
             else
             {
@@ -177,7 +176,56 @@ namespace Doubly_Linked_List
             }
         }
         
+        static void handleEditingNode()
+        {
+            // List doesn't exist
+            if (list == null)
+            {
+                Console.WriteLine("\nYou haven't initialised a doubly linked tree, please add a number and try and view it again.\n");
+                return;
+            }
 
+            // First, handle the search for the node.
+            // Handle the search.
+            Console.WriteLine("Please enter the key of the node you want to search for in the doubly linked list.");
+
+            // Get the user's desired node data.
+            Console.Write("\nKey to search for: ");
+
+            // Parse the user's input into an integer, otherwise return a warning.
+            int usersKeyInput = parseUsersInputToInt(Console.ReadLine());
+
+            // 
+            if (usersKeyInput != -1)
+            {
+                // The input was a valid string integer representation and could be parsed.
+                // Find the node in the list.
+                Node foundNode = list.findNode(list, usersKeyInput);
+                if (foundNode != null)
+                {
+                    // Found the node, so let the user edit it's data.
+                    Console.WriteLine("\nEditing [{0}, \"{1}\"].", foundNode.key, foundNode.data);
+                    // Get the input for the new data. And store the oldData temporarily.
+                    Console.Write("\nEnter your new data for the node: ");
+                    string newData = Console.ReadLine();
+                    string oldData = foundNode.data;
+                    // Save the changes to the node.
+                    foundNode.data = newData;
+                    // Notify the user of success.
+                    Console.WriteLine("\nSuccessfully updated Node [{0}, \"{1}\"] to [{0}, \"{2}\"]\n", foundNode.key, oldData, foundNode.data);
+                }
+                else
+                {
+                    // Unable to find the node or the binary tree doesn't exist, let the user node.
+                    Console.WriteLine("\n{0} wasn't found in the list, please try another number or print the list to see what's in there.\n", usersKeyInput);
+                }
+            }
+            else
+            {
+                // Couldn't parse the number into an int.
+                Console.WriteLine("\nCouldn't get a valid number from what you entered.\n");
+            }
+        }
 
         // The user wasnt to print/visualise the list, this method will visualise the current list for the user.
         static void printList()
