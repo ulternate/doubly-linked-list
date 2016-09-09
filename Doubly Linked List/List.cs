@@ -1,4 +1,5 @@
-﻿// Created: Daniel Swain
+﻿using System;
+// Created: Daniel Swain
 // Date: 09/09/2016
 //
 // Custom object representing the Double Linked List, storing the nodes
@@ -188,6 +189,54 @@ namespace Doubly_Linked_List
                 // Otherwise set the next node and set it's prev node to point to the prev node from the
                 // nodeBeingDeleted.
                 nodeBeingDeleted.getNext().setPrev(nodeBeingDeleted.getPrev());
+            }
+        }
+
+        // Traverse and print the contents of the list either forward of backwards.
+        public void traverseAndPrintList(List list, int traversalMethod)
+        {
+            switch (traversalMethod)
+            {
+                case 1:
+                    Console.WriteLine("Traversing the list using the forwards traversal method.");
+                    forwardTraversal(list);
+                    break;
+
+                case 2:
+                    Console.WriteLine("Traversing the list using the backwards traversal method.");
+                    backwardsTraversal(list);
+                    break;
+
+                default:
+                    Console.WriteLine("Traversing the list using the forwards traversal method.");
+                    forwardTraversal(list);
+                    break;
+            }
+        }
+
+        // Traverse the list from first to last.
+        private void forwardTraversal(List list)
+        {
+            Node currentNode = list.getFirst();
+
+            while (currentNode != null)
+            {
+                // Print the node to the console and then get the next node.
+                Console.Write("[{0}, \"{1}\"] ", currentNode.key, currentNode.data);
+                currentNode = currentNode.getNext();
+            }
+        }
+
+        // Traverse the list from last to first.
+        private void backwardsTraversal(List list)
+        {
+            Node currentNode = list.getLast();
+
+            while (currentNode != null)
+            {
+                // Print the node to the console then get the previous node.
+                Console.Write("[{0}, \"{1}\"] ", currentNode.key, currentNode.data);
+                currentNode = currentNode.getPrev();
             }
         }
     }
