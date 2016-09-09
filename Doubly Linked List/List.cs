@@ -44,6 +44,35 @@ namespace Doubly_Linked_List
             last = node;
         }
 
+        // Find and return the node with the given key. Note, this will return the first node with
+        // the matching key if there are any duplicates.
+        public Node findNode(List list, int searchKey)
+        {
+            // Temporary nodes used to find the node with the given key.
+            Node foundNode = null;
+            Node checkNode = list.getFirst();
+
+            while (checkNode != null && checkNode.key != searchKey)
+            {
+                if (checkNode.getNext() == null)
+                {
+                    // No next item so return null as it wasn't found and has reached the end of list.
+                    return null;
+                }
+                else
+                {
+                    // Update the checkNode we're checking to be the next node of the old checkNode
+                    // and repeat this loop.
+                    checkNode = checkNode.getNext();
+                }
+            }
+
+            // Update the foundNode as we've finished the loop and have found it.
+            foundNode = checkNode;
+
+            return foundNode;
+        }
+
         // Insert a new node after the desired node.
         public void insertAfterNode(List list, Node nodeBeingInserted, Node node)
         {
