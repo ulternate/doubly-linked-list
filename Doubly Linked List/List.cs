@@ -214,6 +214,21 @@ namespace Doubly_Linked_List
             }
         }
 
+        // Get the size of the list, i.e. the number of nodes in the list argument.
+        public int sizeOfList(List list)
+        {
+            int length = 0;
+            Node current = null;
+
+            // Loop through the list, provided current is not null and then count the number of nodes in the list.
+            for (current = first; current != null; current = current.getNext())
+            {
+                length++;
+            }
+            
+            return length;
+        }
+
         // Traverse the list from first to last.
         private void forwardTraversal(List list)
         {

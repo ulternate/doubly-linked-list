@@ -108,12 +108,12 @@ namespace Doubly_Linked_List
             if (usersKeyInput != -1)
             {
                 // The input was a valid string integer representation and could be parsed.
-                // Initialise our tree if it doesn't exist yet.
+                // Initialise our list if it doesn't exist yet.
                 if (list == null)
                 {
                     list = new List();
                 }
-                // Try and add the user's input to the tree as a new node. Will fail if a node with the key already exists.
+                // Try and add the user's input to the list as a new node. Will fail if a node with the key already exists.
                 Node nodeToBeAdded = new Node(usersKeyInput, usersNodeData);
                 if (list.findNode(list, nodeToBeAdded.key) != null)
                 {
@@ -140,7 +140,7 @@ namespace Doubly_Linked_List
             // List doesn't exist
             if (list == null)
             {
-                Console.WriteLine("\nYou haven't initialised a doubly linked tree, please add a number and try and view it again.\n");
+                Console.WriteLine("\nYou haven't initialised a doubly linked list, please add a number and try and view it again.\n");
                 return;
             }
 
@@ -165,7 +165,7 @@ namespace Doubly_Linked_List
                 }
                 else
                 {
-                    // Unable to find the node or the binary tree doesn't exist, let the user node.
+                    // Unable to find the node or the binary list doesn't exist, let the user node.
                     Console.WriteLine("\n{0} wasn't found in the list, please try another number or print the list to see what's in there.\n", usersKeyInput);
                 }
             }
@@ -181,7 +181,7 @@ namespace Doubly_Linked_List
             // List doesn't exist
             if (list == null)
             {
-                Console.WriteLine("\nYou haven't initialised a doubly linked tree, please add a number and try and view it again.\n");
+                Console.WriteLine("\nYou haven't initialised a doubly linked list, please add a number and try and view it again.\n");
                 return;
             }
 
@@ -232,7 +232,7 @@ namespace Doubly_Linked_List
             // List doesn't exist.
             if (list == null)
             {
-                Console.WriteLine("\nYou haven't initialised a doubly linked tree, please add a number and try and view it again.\n");
+                Console.WriteLine("\nYou haven't initialised a doubly linked list, please add a number and try and view it again.\n");
                 return;
             }
 
@@ -276,7 +276,15 @@ namespace Doubly_Linked_List
             // List doesn't exist
             if ( list == null)
             {
-                Console.WriteLine("\nYou haven't initialised a doubly linked tree, please add a number and try and view it again.\n");
+                Console.WriteLine("\nYou haven't initialised a doubly linked list, please add a number and try and view it again.\n");
+                return;
+            }
+
+            // List is empty
+            int size = list.sizeOfList(list);
+            if (size <= 0)
+            {
+                Console.WriteLine("\nThe list is empty, please add a number and try and view it again.\n");
                 return;
             }
 
