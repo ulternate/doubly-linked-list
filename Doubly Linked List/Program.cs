@@ -91,6 +91,7 @@ namespace Doubly_Linked_List
         }
 
         // The user wants to add a node to the list, this method handles all the actions and inputs associated with that.
+        // No duplicates allowed.
         static void handleAddingOfNode()
         {
             Console.WriteLine("Please enter a number you would like to add to the doubly linked list.");
@@ -112,18 +113,18 @@ namespace Doubly_Linked_List
                 {
                     list = new List();
                 }
-                // Try and add the user's input to the tree as a new node. The addNode method returns true for a successful add and galse for a duplicate.
+                // Try and add the user's input to the tree as a new node. Will fail if a node with the key already exists.
                 Node nodeToBeAdded = new Node(usersKeyInput, usersNodeData);
-                list.insertAtEnd(list, nodeToBeAdded);
                 if (list.findNode(list, nodeToBeAdded.key) != null)
                 {
-                    // Successfully added the node to the list.
-                    Console.WriteLine("\nSuccessfully added [{0}, \"{1}\"] to the list.\n", usersKeyInput, usersNodeData);
+                    // Node already exists.
+                    Console.WriteLine("\nCouldn't add [{0}, \"{1}\"] to the list, as a node with key {0} already exists.\n", usersKeyInput, usersNodeData);
                 }
                 else
                 {
-                    // Unsuccessfully added the number to the list.
-                    Console.WriteLine("\nCouldn't add [{0}, \"{1}\"] to the list.\n", usersKeyInput, usersNodeData);
+                    list.insertAtEnd(list, nodeToBeAdded);
+                    // Successfully added the node to the list.
+                    Console.WriteLine("\nSuccessfully added [{0}, \"{1}\"] to the list.\n", usersKeyInput, usersNodeData);
                 }
             }
             else
